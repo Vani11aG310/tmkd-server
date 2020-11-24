@@ -1,0 +1,32 @@
+{
+  "name": "tmkd-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node db.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vani11aG310/tmkd-server.git"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vani11aG310/tmkd-server/issues"
+  },
+  "homepage": "https://github.com/Vani11aG310/tmkd-server#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "engines": {
+    "node": "10.15.3"
+  }
+}
