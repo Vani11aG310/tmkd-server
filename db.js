@@ -48,6 +48,42 @@ app.get('/events', function(req, res){
     });
 });
 
+app.get('/nearby_events', function(req, res){
+    const user_lat = req.query.latitude;
+    const user_lng = req.query.longitude;
+
+    sql_query = 
+        `SELECT` +
+        `    *, (\n` +
+        `    6371 * acos (\n` +
+        `    cos ( radians(?) )\n` +
+        `    * cos( radians(lat))\n` +
+        `    * cos( radians(lng) - radians(?))\n` +
+        `    + sin ( radians(?))\n` +
+        `    * sin( radians(lat))\n` +
+        `    )\n` +
+        `) AS distance\n` +
+        `FROM event\n` +
+        `HAVING distance < 30\n` +
+        `ORDER BY distance DESC\n` +
+        `LIMIT 10;\n`;
+
+    let input_values = [
+        user_lat,
+        user_lng,
+        user_lat
+    ]
+
+    con.query(sql_query, input_values, function(error, rows, fields){
+        if(error) console.log(error);
+
+        else{
+            res.send(rows);
+        };
+    });
+});
+
+
 app.get('/playlist', function(req, res) {
     con.query('select * from playlist where user_id = ?', req.query.user_id, function(error, rows, fields){
         if(error) console.log(error);
