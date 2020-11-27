@@ -39,7 +39,7 @@ app.get('/user' , function(req, res) {
 })
 
 app.get('/events', function(req, res){
-    con.query('select * from event', function(error, rows, fields){
+    con.query('select * from event limit 10;', function(error, rows, fields){
         if(error) console.log(error);
 
         else{
